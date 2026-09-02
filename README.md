@@ -1,5 +1,9 @@
 # 01-js-local-test
 
+[![CI](https://github.com/ghostbladexyz/01-js-local-test/actions/workflows/ci.yml/badge.svg)](https://github.com/ghostbladexyz/01-js-local-test/actions/workflows/ci.yml)
+[![Node.js >=18](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/en/about/previous-releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Run 01-edu JavaScript exercise tests locally without cloning `01-edu/public`
 or using Docker for regular exercises.
 
@@ -121,6 +125,29 @@ For DOM exercises or for exact official image behavior:
 ```sh
 docker run --rm -e EXERCISE=abs -v "$PWD:/jail/student:ro" ghcr.io/01-edu/test-js:latest
 ```
+
+## Distribution and releases
+
+This is a local CLI, so it has no server deployment target. Production
+releases are packaged and attached to a GitHub Release by
+[`release.yml`](https://github.com/ghostbladexyz/01-js-local-test/blob/main/.github/workflows/release.yml) when a maintainer pushes a
+semantic version tag such as `v0.1.0`.
+
+To install a downloaded release archive globally:
+
+```sh
+npm install --global ./01-js-local-test-<version>.tgz
+```
+
+To create a release as a maintainer:
+
+```sh
+npm version patch
+git push origin main --follow-tags
+```
+
+Pull requests and pushes to `main` run the full check suite on the supported
+Node.js versions in [`ci.yml`](https://github.com/ghostbladexyz/01-js-local-test/blob/main/.github/workflows/ci.yml).
 
 ## Upstream Tests
 
